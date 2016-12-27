@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>TODO</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/style.css"/>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+<script src="https://canjs.com/release/latest/can.jquery.js"></script>  
+<script src="https://canjs.com/release/latest/can.map.define.js"></script>
+<script src="https://canjs.com/release/latest/can.list.sort.js"></script>
+<script src="https://canjs.com/release/latest/can.stache.js"></script>
+<script src="https://canjs.com/release/latest/can.fixture.js"></script>
+<script src="https://canjs.com/release/latest/can.construct.proxy.js"></script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script type='text/stache' id='app'>
+        <todo-view/>
+</script>
+<script type="text/stache" id="todo-view-stache">
+	<div class="container-fluid">
+        <h3 class="text-center">My ToDo List</h3>
+        <div class="list-group">
+           	{{#each todoList}}
+	            <div class="list-group-item">
+	                <div class="col-sm-10">
+	                	{{todoItem}}
+	                </div>
+	                <div class="col-sm-2">
+		                {{#if status}}
+		                    <button class="glyphicon btn btn-default btn-sm" ($click)="changeStatus(.)" title="done">&#xe013;</button>
+		                {{else}}
+		                    <button class="glyphicon btn btn-default btn-sm" ($click)="changeStatus(.)" title="undone">&#xe014;</button>
+		                {{/if}}
+	                	<button class="glyphicon btn btn-default btn-sm" ($click)="deleteTodo(.)" title="deleteS">&#xe020;</button>
+	            	</div>
+	           	</div>
+            {{/each}}
+        </div>
+        <div id="addTodo">
+            <input type="text" class="form-control" name="term" placeholder="new todo..." {($value)}="newTodo" required />
+            <button class="btn btn-primary" ($click)="addTodo()">Add Todo</button>
+        </div>
+    </div>
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>
